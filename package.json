@@ -1,0 +1,36 @@
+{
+  "name": "simplemessagingapp",
+  "version": "1.0.0",
+  "description": "A simple messaging app to let 2 hardcoded users chat with one another.",
+  "main": "index.js",
+  "scripts": {
+    "babel": "babel src/app.js -o build/main.bundle.js",
+    "test": "./node_modules/karma/bin/karma start karma.conf.js",
+    "serve": "budo index.js --live"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NicoPampe/SimpleMessagingApp.git"
+  },
+  "author": "Nico Pampe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NicoPampe/SimpleMessagingApp/issues"
+  },
+  "homepage": "https://github.com/NicoPampe/SimpleMessagingApp#readme",
+  "dependencies": {
+    "budo": "^11.6.3",
+    "requirejs": "^2.3.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^24.9.0",
+    "jest": "^24.9.0",
+    "karma": "^4.2.0",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-jasmine": "^2.0.1",
+    "regenerator-runtime": "^0.13.3"
+  }
+}
