@@ -31,4 +31,4 @@ dc2.onclose = function () {
 
 console.log('woot!!');
 
-export { dc1, dc2 };
+module.exports { dc1, dc2 };
