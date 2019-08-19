@@ -1,5 +1,5 @@
 # SimpleMessagingApp
-A simple messaging app to let 2 hardcoded users chat with one another.
+A simple messaging app to let two, hardcoded peer connections users chat with one another.
 
 To see this in action:
 1. `npm i`
@@ -11,7 +11,7 @@ To see this in action:
 To see the tests in action (they are still WIP):
 1. `npm run test`
 
-# Notes and ideas to reflect on later:
+# Notes, ideas, and thoughts to reflect on:
 ## Before Starting....
 1) I could simply send messages over a dataChannel. Already know how to set those up so it would be faster. Is there a better solutions then sending a message over the dc? Probably. But I'm going to stick with the knowledge I currently have without researching another solution. Then, after it get it (hopefully) workin, I want to see if there was a better solution or different place I could have sent messages over.
 2) I need to get something running locally. For this part I'm going to rely on some npm modules. I want to focus more on building it rather then really spending time getting the service running since I currently plan on just running locally.
@@ -23,7 +23,7 @@ Ok: as I'm getting things set up, making a list of stuff I normally like doing s
 
 * Keep a clean layout. I should be putting the real code in modules and in dirs.
 * Tests are super cool. I want to strive to have somewhat descent code coverage and have simple unit tests around the dc. I should be able to build tests before I even build the other stuff.
-* Wow, so after thinking I was smart and going to use babel to try new es6 (I have it working in other projects, but it's already set up, thus I didn't really need to think about things), I got stuck just trying to use es6 import/export. I was trying to reference outside info as little as possible but quickly started to struggle just getting the init set up to use babel. Hopefully I can come back and truly get it working, but it doesn't feel needed right now since it's just tying to use es6 https://stackoverflow.com/questions/38296667/getting-unexpected-token-export -> https://github.com/babel/babel/issues/8482
+* Wow, so after thinking I was smart and going to use babel to try new es6. I use it in other projects, but much of those projects already had the ground work, thus I never dealt with it from scratch. Only fixing things in place. I got stuck just trying to use es6 import/export. I was trying to reference outside info as little as possible but quickly started to struggle just getting the init set up to use babel. Hopefully I can come back and truly get this working, but I want to move forward with the project since I can still complete the task with the tools I currently have https://stackoverflow.com/questions/38296667/getting-unexpected-token-export -> https://github.com/babel/babel/issues/8482
 
 ## Session 2
 I had a lot of ground work set up and sections I wanted to get working. Ben fighting compiler issues and a mix up of wrong/different babel and browserfy set ups. My original goal was to have tests show the messages being sent over the dataChannel. Sadly I kept fighting compiler issues and trying to use new/different patterns for modules.
@@ -36,7 +36,7 @@ Got messages being sent over a data channel working! Most of the parts fell into
 
 I ran out of time to circle back and work on the tests. My original idea (before other issues) was to show a message being sent all through e2e tests. Then write the rest of the code to do the same on the hosted web page. I had enough issues getting karma and jasmine to play nice due to syntax/compiler errors. The afterEach steps where always failing due to syntax errors. Much of the compiler for the tests where expecting es6 and since I failed at getting Babel working, sections where failing and the output was difficult to read. If I had more time or was working on product-ionizing this project, I would have staying on the path of getting the test working solid first before really starting any other sections. This would give quicker developer time and I could have a slew of tests to make sure every new code change helps/passes.
 
-Final note: my main goal with this project was to try and look up or reference example code as little as possible. I had 2 major points where I failed:
+**Final note**: my main goal with this project was to try and look up or reference example code as little as possible. I had 2 major points where I failed:
 1) trying to get babel working. Ended up researching a lot and learning a lot.
 2) the init ICE connections. I know how the negotiation works but always forget a little step or part. In the end, I needed to reference the docs on steps to connect a local and remote peer connection. I knew I needed the peer connection though to open and use the data channel.
 
