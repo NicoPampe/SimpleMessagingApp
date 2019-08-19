@@ -4,16 +4,19 @@
 // Load the elemnts once
 const connectButton = document.getElementById('connectButton');
 const disconnectButton = document.getElementById('disconnectButton');
-const sendMessageButton = document.getElementById('sendMessageButton');
-const messageInput = document.getElementById('sendMessageText');
-const displayMessageText = document.getElementById('incomingMessagesText');
+const localSendMsgButton = document.getElementById('localSendMsgButton');
+const localChannelMsgText = document.getElementById('localChannelMsgText');
+const localMsgTextarea = document.getElementById('localMsgTextarea');
+const remoteSendMsgButton = document.getElementById('remoteSendMsgButton');
+const remoteChannelMsgText = document.getElementById('remoteChannelMsgText');
+const remoteMsgTextarea = document.getElementById('remoteMsgTextarea');
 
 // event listeners
 connectButton.addEventListener('click', connect);
 disconnectButton.addEventListener('click', disconnect);
 
-sendMessageButton.addEventListener('click', (event) => {
-  const input = messageInput.value || 'I guess I can send a defualt string...';
+localSendMsgButton.addEventListener('click', (event) => {
+  const input = localChannelMsgText.value || 'I guess I can send a defualt string...';
   const data = { message: input };
   try {
     localDataChannel.send(JSON.stringify(data));
@@ -22,10 +25,25 @@ sendMessageButton.addEventListener('click', (event) => {
   }
 });
 
+remoteSendMsgButton.addEventListener('click', (event) => {
+  const input = remoteChannelMsgText.value || 'A defualt string from the remote peer coonection? Crazy!';
+  const data = { message: input };
+  try {
+    remoteDataChannel.send(JSON.stringify(data));
+  } catch (e) {
+    window.alert(e);
+  }
+});
+
 // helpers
-function displayMessage(msg) {
-  const oldText = displayMessageText.value;
-  displayMessageText.value = `${msg}\n${oldText}`; // TODO: this will always add a new line. Shouldn't add a new line if oldText is empty
+function displayMessage(msg, target) {
+  if (target === 'local') {
+    const oldText = localMsgTextarea.value;
+    localMsgTextarea.value = `${msg}\n${oldText}`; // TODO: this will always add a new line. Shouldn't add a new line if oldText is empty
+  } else if (target === 'remote') {
+    const oldText = remoteMsgTextarea.value;
+    remoteMsgTextarea.value = `${msg}\n${oldText}`; // TODO: this will always add a new line. Shouldn't add a new line if oldText is empty
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -51,7 +69,9 @@ function connect() {
   localDataChannel = localPC.createDataChannel('local channel');
   /// event handlers ///
   localDataChannel.onmessage = function (event) {
-    console.log('received: ', event.data);
+    const data = JSON.parse(event.data);
+    console.log('received: ', data);
+    displayMessage(data.message, 'local'); // hard coding this path. There should be checks in place
   };
 
   localDataChannel.onopen = function () {
@@ -70,7 +90,7 @@ function connect() {
     remoteDataChannel.onmessage = function (event) {
       const data = JSON.parse(event.data);
       console.log('received: ', data);
-      displayMessage(data.message); // hard coding this path. There should be checks in place
+      displayMessage(data.message, 'remote'); // hard coding this path. There should be checks in place
     };
     remoteDataChannel.onopen = function () {
       console.log('datachannel 2 open');
