@@ -1,7 +1,7 @@
 # SimpleMessagingApp
 A simple messaging app to let two, hardcoded peer connections users chat with one another.
 
-To see this in action:
+To see this in action (Built on Mac. Not tested on Linux or Windows):
 1. `npm i`
 2. `npm run serve`
 3. navigate to the url the serve is running at. Location is in the output.
